@@ -2,7 +2,6 @@ import React from "react";
 import Axios from 'axios'
 import Transaction from "./transaction";
 import Navbar from "./Navbar";
-import image from './images/background_page.jpg'
 
 
 export default class Customers extends React.Component{
@@ -32,7 +31,6 @@ export default class Customers extends React.Component{
             toggleModal:!this.state.toggleModal,
             temp:e.target.value,
             temp2:e.target.name,
-            temp3:e.target.id
         })
     }
     closeToggle=()=>{
@@ -42,20 +40,13 @@ export default class Customers extends React.Component{
     }
     render(){
         return(
-            <div style={{height:'100vh'}}>
-                <img src={image} alt="helloworldbank"
-                    style={{
-                        width:'100vw',
-                        height:'100vh',
-                        position:'absolute',
-                        opacity:'1',
-                        zIndex:'-1'
-                    }} />
+            <div>
                 <Navbar/>
-                <div style={{padding:'40px',}}>
-                    <table style={{background:'rgba(255,255,255,0.9)'}}className="table table-striped table-bordered">
+                <h3 className="text-center text-uppercase font-weight-bold">customers page</h3>
+                <div className="container shadow px-0 rounded">
+                    <table className="table table-striped table-bordered text-center my-auto">
                         <thead>
-                            <tr>
+                            <tr className="text-uppercase">
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Balance</th>
@@ -71,9 +62,10 @@ export default class Customers extends React.Component{
                                         <td>{data.balance}</td>
                                         <td>
                                             <button value={data.name} 
-                                                name={data._id} 
+                                                name={data._id}
+                                                className="btn btn-primary btn-md text-uppercase" 
                                                 onClick={this.handleClick}>
-                                                    Transfer Money
+                                                    Show Details
                                             </button>
                                         </td>
                                     </tr>

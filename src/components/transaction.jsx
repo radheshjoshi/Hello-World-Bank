@@ -11,7 +11,6 @@ export default class Transaction extends React.Component{
         this.state={
             to:'',
             amount:'',
-            showPopup:false,
             customers:[],
         }
     }
@@ -54,27 +53,23 @@ export default class Transaction extends React.Component{
             to:to,
             amount:amount
         }
-        if(trans.to === ''){
-            trans.to= this.state.customers[0]._id;
-        }
-
-        // console.log(trans);
         if(trans.to === trans.from){
-            window.alert('Sending Money to Yourself!')
+            window.alert('Sending Monet to Yourself!')
         }
         else{
             Axios.post('http://localhost:5000/transactions', trans)
-            .then(res => {
-                this.setState({
-                    to:'', 
-                    amount:'',
-                    showPopup:true
+                .then(res => {
+                    this.setState({
+                        to:'', 
+                        amount:'',
+                        showPopup:true
+                    })
+                    window.alert(res.data);
+                    window.location.href="/customers"
                 })
-                console.log(res.data);
-            })
-            .catch(err=>console.log(err.message));
+                .catch(err=>window.alert(err.message));
         }
-
+        
     }
 
     render(){
@@ -91,20 +86,18 @@ export default class Transaction extends React.Component{
                         width:'100vw',
                         backdropFilter:'blur(3px)',
                         background: "rgba(0, 0, 0, 0.5)"
-                    }}
-                    
-                    >
+                    }}>
                     
                     <form action="#" onSubmit={this.handleSubmit}
                         style={{
                             background: 'white',
                             padding: '43px',
                             }}>
-                        <h3 style={{color:'black', fontWeight:'bolder'}}>Transfer Money</h3>
+                        <h3 className="fw-bold">Transfer Money</h3>
                         <div>
                             <label className="form-label" style={{color:"black",fontWeight:"bold"}}>From:</label>
                             <input type="text" 
-                            className="form-control"
+                            className="form-control bg-light"
                             value={this.props.customerName}
                             readOnly
                             required/>
@@ -114,7 +107,7 @@ export default class Transaction extends React.Component{
                             <select value={this.state.to} 
                                 className="form-select"
                                 onChange={this.handleToChange}>
-                                <option selected>Select the Receipent</option>
+                                <option selected value="hello">Select the Receiver</option>
                                 {this.state.customers.map((data, index)=>{
                                     return(
                                         <option key={index} value={data._id}>{data.name}</option>
@@ -137,42 +130,10 @@ export default class Transaction extends React.Component{
                                 justifyContent:'space-between',
                                 margin:'10px 0px'
                             }}>
-                            <button type="submit" className="btn btn-primary">Transfer</button>
-                            <button type="button" className="btn btn-secondary" onClick={this.handleClick}>Cancel</button>
+                            <button type="submit" className="btn btn-info btn-md text-uppercase">Transfer</button>
+                            <button type="button" className="btn btn-danger btn-md text-uppercase" onClick={this.handleClick}>Cancel</button>
                         </div>
                     </form>
-                </div>
-                <div>
-                    {this.state.showPopup?<div className="container"
-                        style={{
-                            position:'absolute', 
-                            top:'0',
-                            height:'100vh',
-                            maxWidth:'100vw',
-                            backdropFilter:'blur(4px)'
-                        }}>
-                        <div className="modal-dialog">
-                            <div className="modal-content"
-                                style={{
-                                    display:"flex",
-                                    justifyContent:'center',
-                                    alignItems:'center'
-                                }}>
-                                <div>
-                                    <h5 className="modal-title" style={{color:'green'}}>Yay! Sucessfully Transfered Money</h5>
-                                </div>
-                                <div className="modal-footer">
-                                    <button className="btn btn-primary" onClick={()=>{
-                                        window.location.href='/customers'
-                                        this.setState({
-                                            showPopup:false
-                                        })
-
-                                    }} style={{width:'100px'}}>Ok</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>:null}
                 </div>
             </div>
         )

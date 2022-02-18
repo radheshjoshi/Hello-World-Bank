@@ -2,7 +2,6 @@ import  Axios  from "axios";
 import React from "react";
 import moment from 'moment';
 import Navbar from "./Navbar";
-import image from './images/background_page.jpg'
 
 
 export default class Transactions extends React.Component{
@@ -24,19 +23,14 @@ export default class Transactions extends React.Component{
 
     render(){
         return(
-            <div style={{backgroundRepeat:'repeat-y'}}>
-                <img src={image} alt="helloworldbank"
-                    style={{
-                        width:'100vw',
-                        position:'absolute',
-                        opacity:'1',
-                        zIndex:'-1'
-                    }}/>
+            <div>
                 <Navbar/>
-                <div style={{padding:"40px"}} >
-                    <table style={{background: 'rgba(255,255,255,0.9)'}} className="table table-striped table-bordered">
+                <h2 className="text-center   text-uppercase font-weight-bold">transcations page</h2>
+                {/* <h6 className="text-center mb-4">last 10 transcations</h6> */}
+                <div className='container shadow px-0 rounded'>
+                    <table className="table table-hover table-bordered text-center my-auto">
                         <thead>
-                            <tr>
+                            <tr className="text-uppercase font-weight-bold">
                                 <th>From</th>
                                 <th>To</th>
                                 <th>Amount</th>

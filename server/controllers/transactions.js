@@ -31,9 +31,9 @@ exports.createTransaction=async(req, res)=>{
                 amount:amount
             })
             await newTransaction.save();
-            res.status(201).json("Tranfered Money");
+            res.status(201).json("Transfered Money");
         }
     }catch(err){
-        res.status(409).json({message: err.message}); 
+        res.status(409).json({message: 'Something Went Wrong'}); 
     }
 }   
