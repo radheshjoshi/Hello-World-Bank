@@ -11,15 +11,15 @@ export default class Home extends React.Component{
                 <section className='container'>
                     <div className='row'>
                         <div className='col-md-6  col-10 my-auto mx-md-none mx-auto'>
-                            <h1 className='text-capitalize'>
-                                Banking Made for All<br/>peoples.
+                            <h1>
+                                Welcome to<br/> Hello World Bank
                             </h1>
                             <p className='lead text-muted'>
-                            were a new kind of exclusive bank. were more than a checking account , more than a debit card , and more than youd expect from your bank .
+                                Hello to the World.
                             </p>
                             <div style={{display:'flex', justifyContent:'space-between'}}>
                                 <Link to='/customers' className='btn btn-info btn-lg text-uppercase shadow' >Customers</Link>
-                                <Link to='/transactions' className='btn btn-outline-info btn-lg text-uppercase shadow'>Transactions</Link>
+                                {/* <Link to='/transactions' className='btn btn-outline-info btn-lg text-uppercase shadow'>Transactions</Link> */}
                             </div>
                         </div>
                         <div className='col-md-6 col-10 my-auto mx-md-none mx-auto overflow-hidden'>
