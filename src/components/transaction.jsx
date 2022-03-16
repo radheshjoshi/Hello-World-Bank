@@ -104,8 +104,8 @@ export default class Transaction extends React.Component{
                         </div>
                         <div>
                             <label className="form-label" style={{color:"black", fontWeight:"bold"}}>To:</label>
-                            <select value={this.state.to} 
-                                className="form-select"
+                            <select className="form-select"
+                                value={this.state.to} 
                                 onChange={this.handleToChange}>
                                 <option selected value="hello">Select the Receiver</option>
                                 {this.state.customers.map((data, index)=>{
